@@ -5,7 +5,8 @@ let liste = [];
  * The function will make an object of the values that are put in
  */
 function kjopBillett() {
-
+    let telregex = /^\d{8}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     const film = document.getElementById("film").value;
     const antall = document.getElementById("antall").value;
@@ -44,18 +45,19 @@ function kjopBillett() {
     } else {
         document.getElementById("etternavnfeilmelding").value = "";
     }
-    if (telefonnr === "") {
+     if (!(telregex.test(telefonnr))) {
         document.getElementById("tlffeilmelding").innerText = "Skriv tlf.nr!"
         error = true;
     } else {
         document.getElementById("tlffeilmelding").value = "";
 
     }
-    if (epost === "") {
+    if (!(emailRegex.test(epost))) {
         document.getElementById("epostfeilmelding").innerText = "Skriv e-post!"
         error = true;
     } else {
         document.getElementById("etternavnfeilmelding").value = "";
+    }
     }
     if (error === false) {
         const person = {
